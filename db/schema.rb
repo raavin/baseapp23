@@ -62,49 +62,22 @@ ActiveRecord::Schema.define(:version => 20090216045512) do
     t.string   "label"
     t.string   "identifier"
     t.text     "description"
-    t.string   "field_type",  :default => "string"
+    t.string   "field_type",     :default => "string"
+    t.string   "select_options"
+    t.string   "select_titles"
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ticket_updates", :force => true do |t|
-    t.integer  "ticket_id"
-    t.integer  "user_id"
-    t.string   "assigned_change"
-    t.string   "status_change"
-    t.string   "category_change"
-    t.string   "priority_change"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tickets", :force => true do |t|
-    t.integer  "creator_id"
-    t.integer  "assigned_to_id"
-    t.string   "subject"
-    t.text     "body"
-    t.string   "category"
-    t.string   "status",         :default => "new"
-    t.string   "priority",       :default => "normal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tickets_users", :id => false, :force => true do |t|
-    t.integer "ticket_id"
-    t.integer "user_id"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",               :limit => 100
-    t.string   "login",               :limit => 100,                        :null => false
-    t.string   "crypted_password",                                          :null => false
-    t.string   "password_salt",                                             :null => false
-    t.string   "persistence_token",                                         :null => false
-    t.string   "perishable_token",                                          :null => false
-    t.string   "single_access_token",                                       :null => false
+    t.string   "login",               :limit => 100, :default => "",        :null => false
+    t.string   "crypted_password",                   :default => "",        :null => false
+    t.string   "password_salt",                      :default => "",        :null => false
+    t.string   "persistence_token",                  :default => "",        :null => false
+    t.string   "perishable_token",                   :default => "",        :null => false
+    t.string   "single_access_token",                :default => "",        :null => false
     t.integer  "login_count",                        :default => 0,         :null => false
     t.string   "state",                              :default => "passive", :null => false
     t.string   "current_login_ip",    :limit => 60
