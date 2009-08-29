@@ -25,6 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "rubyist-aasm", :lib => "aasm"
   config.gem "RedCloth", :lib => "redcloth"
   config.gem "maruku"
+  config.gem "haml"
 
 
   # Only load the plugins named here, in the order given (default is alphabetical).

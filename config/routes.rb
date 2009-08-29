@@ -19,7 +19,7 @@ ActionController::Routing::Routes.draw do |map|
                                      :update_email => :put,
                                      :edit_avatar => :get,
                                      :update_avatar => :put }
-
+  map.resources :pages
   map.resource :session
 
   # Profiles
@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
                                              :active    => :get,
                                              :suspended => :get,
                                              :deleted   => :get }
+    admin.resources :pages
   end
 
   # Dashboard as the default location
