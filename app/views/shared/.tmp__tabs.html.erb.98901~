@@ -1,0 +1,4 @@
+<ul>
+  <li><%= tab_to t('.dashboard', :default => 'Dashboard'), [{:controller => "dashboard" }] %></li>
+</ul>
+
