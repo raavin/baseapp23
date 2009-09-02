@@ -2,7 +2,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # GET /<%= table_name %>
   # GET /<%= table_name %>.xml
   def index
-    @client = <%= model_controller_class_name %>.find(params[:client_id])
+    @client = <%= parent_controller_class_name %>.find(params[:client_id])
     @<%= table_name %> = @client.<%= table_name %>
 
     respond_to do |format|

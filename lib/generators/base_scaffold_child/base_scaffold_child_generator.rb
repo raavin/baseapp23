@@ -16,26 +16,26 @@ class BaseScaffoldChildGenerator < Rails::Generator::NamedBase
                 :controller_controller_name,              # sessions
                 :controller_file_name
   alias_method  :controller_table_name, :controller_plural_name
-  attr_reader   :model_controller_name,
-                :model_controller_class_path,
-                :model_controller_file_path,
-                :model_controller_class_nesting,
-                :model_controller_class_nesting_depth,
-                :model_controller_class_name,
-                :model_controller_singular_name,
-                :model_controller_plural_name,
-                :model_controller_routing_name,           # new_user_path
-                :model_controller_routing_path,           # /users/new
-                :model_controller_controller_name         # users
-  alias_method  :model_controller_file_name,  :model_controller_singular_name
-  alias_method  :model_controller_table_name, :model_controller_plural_name
+  attr_reader   :parent_controller_name,
+                :parent_controller_class_path,
+                :parent_controller_file_path,
+                :parent_controller_class_nesting,
+                :parent_controller_class_nesting_depth,
+                :parent_controller_class_name,
+                :parent_controller_singular_name,
+                :parent_controller_plural_name,
+                :parent_controller_routing_name,           # new_user_path
+                :parent_controller_routing_path,           # /users/new
+                :parent_controller_controller_name         # users
+  alias_method  :parent_controller_file_name,  :parent_controller_singular_name
+  alias_method  :parent_controller_table_name, :parent_controller_plural_name
 
   def initialize(runtime_args, runtime_options = {})
     super
 
 
     @controller_name = (args.shift || 'sessions').pluralize
-    @model_controller_name = @name.pluralize
+    @parent_controller_name = @name.pluralize
 
     # sessions controller
     base_name, @controller_class_path, @controller_file_path, @controller_class_nesting, @controller_class_nesting_depth = extract_modules(@controller_name)
@@ -50,18 +50,18 @@ class BaseScaffoldChildGenerator < Rails::Generator::NamedBase
     @controller_routing_path  = @controller_file_path.singularize
     @controller_controller_name = @controller_plural_name
 
-    # model controller
-    base_name, @model_controller_class_path, @model_controller_file_path, @model_controller_class_nesting, @model_controller_class_nesting_depth = extract_modules(@model_controller_name)
-    @model_controller_class_name_without_nesting, @model_controller_singular_name, @model_controller_plural_name = inflect_names(base_name)
+    # parent controller
+    base_name, @parent_controller_class_path, @parent_controller_file_path, @parent_controller_class_nesting, @parent_controller_class_nesting_depth = extract_modules(@parent_controller_name)
+    @parent_controller_class_name_without_nesting, @parent_controller_singular_name, @parent_controller_plural_name = inflect_names(base_name)
 
-    if @model_controller_class_nesting.empty?
-      @model_controller_class_name = @model_controller_class_name_without_nesting
+    if @parent_controller_class_nesting.empty?
+      @parent_controller_class_name = @parent_controller_class_name_without_nesting
     else
-      @model_controller_class_name = "#{@model_controller_class_nesting}::#{@model_controller_class_name_without_nesting}"
+      @parent_controller_class_name = "#{@parent_controller_class_nesting}::#{@parent_controller_class_name_without_nesting}"
     end
-    @model_controller_routing_name    = @table_name
-    @model_controller_routing_path    = @model_controller_file_path
-    @model_controller_controller_name = @model_controller_plural_name
+    @parent_controller_routing_name    = @table_name
+    @parent_controller_routing_path    = @parent_controller_file_path
+    @parent_controller_controller_name = @parent_controller_plural_name
 
     
     if options[:dump_generator_attribute_names] 
