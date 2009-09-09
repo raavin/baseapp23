@@ -2,7 +2,7 @@
 #   configatron.site_name
 
 development: &local
-    site_name: Recruier
+    site_name: Recruiter
     site_url: "localhost:3002"
 
     company_name: BaseApp Inc.
