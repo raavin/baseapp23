@@ -1,0 +1,27 @@
+<%= content_for :header, "Listing clients" %>
+<% content_for :sidebar do %>
+  <ul class="sidebar_menu">
+    <li><%= link_to_new Client %></li>
+	
+  </ul>
+<% end -%>
+
+<table class="index">
+  <tr>
+    <th><%= Client.human_attribute_name('name') %></th>
+    <th>&nbsp;</th>
+  </tr>
+<% for client in @clients %>
+  <tr>
+    <td><%=h client.name %></td>
+    <td class="actions">
+      <%= link_to 'Manage Casenotes', client_casenotes_path(client, @casenotes)%> |
+      <%= link_to_show client %> |
+      <%= link_to_edit client %> |
+      <%= link_to_destroy client %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @clients %>
+

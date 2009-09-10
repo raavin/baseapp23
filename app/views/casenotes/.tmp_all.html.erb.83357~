@@ -1,0 +1,28 @@
+<%= content_for :header, "Listing casenotes" %>
+<% content_for :sidebar do %>
+  <ul class="sidebar_menu">
+    <li><%= link_to 'New casenote', new_client_casenote_path(@client) %></li>
+	<li><%= link_to_back clients_path, :text => t('.back', :default => 'Back to clients list') %></li>
+  </ul>
+<% end -%>
+
+<table class="index">
+  <tr>
+    <th><%= Casenote.human_attribute_name('client') %></th>
+    <th><%= Casenote.human_attribute_name('name') %></th>
+    <th>&nbsp;</th>
+  </tr>
+<% for casenote in @casenotes %>
+  <tr>
+    <td><%=h casenote.client.name %></td>
+    <td><%=h casenote.name %></td>
+    <td class="actions">
+      <%= link_to 'Show', client_casenote_path(@client, casenote) %> |
+      <%= link_to 'Edit', edit_client_casenote_path(@client, casenote) %> |
+      <%= link_to 'Destroy', client_casenote_path(@client, casenote) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @casenotes %>
+

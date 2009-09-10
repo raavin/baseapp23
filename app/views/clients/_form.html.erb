@@ -1,0 +1,20 @@
+<% content_for :sidebar do %>
+  <ul class="sidebar_menu">
+    <li><%= link_to_back clients_path, :text => t('.back', :default => 'Back to clients list') %></li>
+    <% unless @client.new_record?  %>
+    <li><%= link_to_show @client %></li>
+    <% end -%>
+  </ul>
+<% end -%>
+<% form_for(@client) do |f| %>
+<%= f.error_messages %>
+<p>
+  <%= f.label :name,  Client.human_attribute_name('name') %><br />
+  <%= f.text_field :name %>
+</p>
+
+<p>
+  <%= f.submit t('.submit', :default => "Confirm") %>
+</p>
+<% end %>
+

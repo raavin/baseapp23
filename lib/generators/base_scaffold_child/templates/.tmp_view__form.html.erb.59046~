@@ -1,0 +1,21 @@
+<%% content_for :sidebar do %>
+  <ul class="sidebar_menu">
+    <li><%%= link_to_back <%= controller_singular_name %>_<%= plural_name %>_path, :text => t('.back', :default => 'Back to <%= plural_name %> list') %></li>
+    <%% unless @<%= singular_name %>.new_record?  %>
+    <li><%%= link_to_show @<%= singular_name %> %></li>
+    <%% end -%>
+  </ul>
+<%% end -%>
+<%% form_for([@<%= controller_singular_name %>,@<%= singular_name %>]) do |f| %>
+<%%= f.error_messages %>
+<% for attribute in attributes -%>
+<p>
+  <%%= f.label :<%= attribute.name %>,  <%= class_name %>.human_attribute_name('<%= attribute.name %>') %><br />
+  <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
+</p>
+<% end %>
+<p>
+  <%%= f.submit t('.submit', :default => "Confirm") %>
+</p>
+<%% end %>
+

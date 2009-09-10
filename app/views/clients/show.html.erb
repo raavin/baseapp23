@@ -1,0 +1,16 @@
+<%= content_for :header, t('.header', :default => "Client") %>
+<% content_for :sidebar do -%>
+  <ul class="sidebar_menu">
+    <li><%= link_to_new Client %></li>
+	<li><%= link_to 'Manage Casenotes', client_casenotes_path(@client)%></li>
+    <li class="separator">&nbsp;</li>
+    <li><%= link_to_back clients_path, :text => t('.back', :default => 'Back to clients list') %></li>
+    <li><%= link_to_edit @client %></li>
+    <li><%= link_to_destroy @client %></li>
+  </ul>
+<% end -%>
+<p>
+  <b><%= Client.human_attribute_name('name') %>:</b>
+  <%=h @client.name %>
+</p>
+

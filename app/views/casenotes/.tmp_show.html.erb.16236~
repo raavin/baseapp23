@@ -1,0 +1,19 @@
+<%= content_for :header, t('.header', :default => "Casenote") %>
+<% content_for :sidebar do -%>
+  <ul class="sidebar_menu">
+    <li><%= link_to_new Casenote %></li>
+    <li class="separator">&nbsp;</li>
+    <li><%= link_to_back client_casenotes_path, :text => t('.back', :default => 'Back to casenotes list') %></li>
+    <li><%= link_to_edit (@client,@casenote) %></li>
+    <li><%= link_to_destroy @casenote %></li>
+  </ul>
+<% end -%>
+<p>
+  <b><%= Casenote.human_attribute_name('client') %>:</b>
+  <%=h @casenote.client %>
+</p>
+<p>
+  <b><%= Casenote.human_attribute_name('name') %>:</b>
+  <%=h @casenote.name %>
+</p>
+
