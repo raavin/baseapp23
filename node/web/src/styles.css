@@ -1,0 +1,54 @@
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1f2937;
+  background-color: #f8fafc;
+}
+
+body {
+  margin: 0;
+}
+
+.app-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-header nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.app-header a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.app-header a.active {
+  text-decoration: underline;
+}
+
+.placeholder {
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
+  margin-top: 1.5rem;
+}
+
+.placeholder h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.placeholder .hint {
+  color: #6b7280;
+  margin-top: 0.75rem;
+}
